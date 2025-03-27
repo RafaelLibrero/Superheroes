@@ -1,5 +1,6 @@
 package com.example.superheroes
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.superheroes.DetailActivity.Companion.EXTRA_ID
 import com.example.superheroes.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -77,8 +79,10 @@ class MainActivity : AppCompatActivity() {
             .build()
     }
 
-    private fun onItemSelected(position: String) {
-
+    private fun onItemSelected(id: String) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra(EXTRA_ID, id)
+        startActivity(intent)
     }
 
 }
