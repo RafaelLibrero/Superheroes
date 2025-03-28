@@ -22,7 +22,7 @@ class SuperHeroAdapter(
     override fun getItemCount() = superHeroList.size
 
     override fun onBindViewHolder(holder: SuperHeroViewHolder, position: Int) {
-        holder.bind(superHeroList[position])
+        holder.bind(superHeroList[position], onItemSelected)
     }
 
 }
