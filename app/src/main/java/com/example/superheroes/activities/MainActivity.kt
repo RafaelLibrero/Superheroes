@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvSuperheroes.setHasFixedSize(true)
         binding.rvSuperheroes.layoutManager = GridLayoutManager(this, 2)
         binding.rvSuperheroes.adapter = adapter
+        searchByName("a")
 
     }
 
