@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="bottom">
+
+        <View
+            android:id="@+id/vIntelligence"
+            style="@style/ViewStats"
+            android:background="@color/superhero_stat_intelligence" />
+
+        <View
+            android:id="@+id/vStrength"
+            style="@style/ViewStats"
+            android:background="@color/superhero_stat_strength" />
+
+        <View
+            android:id="@+id/vDurability"
+            style="@style/ViewStats"
+            android:background="@color/superhero_stat_durability" />
+
+        <View
+            android:id="@+id/vPower"
+            style="@style/ViewStats"
+            android:background="@color/superhero_stat_power" />
+
+        <View
+            android:id="@+id/vSpeed"
+            style="@style/ViewStats"
+            android:background="@color/superhero_stat_speed" />
+
+        <View
+            android:id="@+id/vCombat"
+            style="@style/ViewStats"
+            android:background="@color/superhero_stat_combat" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            style="@style/IconStats"
+            android:src="@drawable/ic_intelligence" />
+
+        <ImageView
+            style="@style/IconStats"
+            android:src="@drawable/ic_strength" />
+
+        <ImageView
+            style="@style/IconStats"
+            android:src="@drawable/ic_durability" />
+
+        <ImageView
+            style="@style/IconStats"
+            android:src="@drawable/ic_power" />
+
+        <ImageView
+            style="@style/IconStats"
+            android:src="@drawable/ic_speed" />
+
+        <ImageView
+            style="@style/IconStats"
+            android:src="@drawable/ic_combat" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</LinearLayout>

@@ -9,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.superheroes.utils.ApiService
 import com.example.superheroes.R
-import com.example.superheroes.data.PowerStatsResponse
 import com.example.superheroes.data.SuperHeroDetailResponse
 import com.example.superheroes.databinding.ActivityDetailBinding
 import com.squareup.picasso.Picasso
@@ -28,6 +27,7 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private lateinit var retrofit: Retrofit
+    private lateinit var superhero: SuperHeroDetailResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +42,21 @@ class DetailActivity : AppCompatActivity() {
         val id = intent.getStringExtra(EXTRA_ID).orEmpty()
         retrofit = getRetrofit()
         getSuperhero(id)
+
+        binding.navigationView.setOnItemSelectedListener { menuItem ->
+            binding.contentBiography.root.visibility = View.GONE
+            binding.contentAppearance.root.visibility = View.GONE
+            binding.contentStats.root.visibility = View.GONE
+
+            when (menuItem.itemId) {
+                R.id.menu_biography -> binding.contentBiography.root.visibility = View.VISIBLE
+                R.id.menu_appearance -> binding.contentAppearance.root.visibility = View.VISIBLE
+                R.id.menu_stats -> binding.contentStats.root.visibility = View.VISIBLE
+            }
+            true
+        }
+
+        binding.navigationView.selectedItemId = R.id.menu_biography
     }
 
     private fun getSuperhero(id: String) {
@@ -49,27 +64,44 @@ class DetailActivity : AppCompatActivity() {
             val myResponse = retrofit.create(ApiService::class.java).getSuperheroById(id)
             if (myResponse.body() != null) {
                 runOnUiThread {
-                    createUI(myResponse.body()!!)
+                    superhero = myResponse.body()!!
+                    createUI()
                 }
             }
         }
     }
 
-    private fun createUI(superhero: SuperHeroDetailResponse) {
+    private fun createUI() {
         Picasso.get().load(superhero.image.url).into(binding.ivSuperhero)
         binding.tvName.text = superhero.name
         binding.tvRealName.text = superhero.biography.fullName
-        binding.tvPublisher.text = superhero.biography.publisher
-        prepareStats(superhero.powerstats)
+        loadData()
     }
 
-    private fun prepareStats(powerStats: PowerStatsResponse) {
-        updateHeight(binding.vIntelligence, powerStats.intelligence)
-        updateHeight(binding.vStrength, powerStats.strength)
-        updateHeight(binding.vDurability, powerStats.durability)
-        updateHeight(binding.vPower, powerStats.power)
-        updateHeight(binding.vSpeed, powerStats.speed)
-        updateHeight(binding.vCombat, powerStats.combat)
+    private fun loadData() {
+        // Biography
+        binding.contentBiography.publisherTextView.text = superhero.biography.publisher
+        binding.contentBiography.placeOfBirthTextView.text = superhero.biography.placeOfBirth
+        binding.contentBiography.alignmentTextView.text = superhero.biography.alignment
+        binding.contentBiography.alignmentTextView.setTextColor(getColor(superhero.getAlignmentColor()))
+        binding.contentBiography.occupationTextView.text = superhero.work.occupation
+        binding.contentBiography.baseTextView.text = superhero.work.base
+
+        //Appearance
+        binding.contentAppearance.genderTextView.text = superhero.appearance.gender
+        binding.contentAppearance.raceTextView.text = superhero.appearance.race
+        binding.contentAppearance.eyeColorTextView.text = superhero.appearance.eyeColor
+        binding.contentAppearance.hairColorTextView.text = superhero.appearance.hairColor
+        binding.contentAppearance.weightTextView.text = superhero.appearance.weight[1]
+        binding.contentAppearance.heightTextView.text = superhero.appearance.height[1]
+
+        //Stats
+        updateHeight(binding.contentStats.vIntelligence, superhero.powerstats.intelligence)
+        updateHeight(binding.contentStats.vStrength, superhero.powerstats.strength)
+        updateHeight(binding.contentStats.vDurability, superhero.powerstats.durability)
+        updateHeight(binding.contentStats.vPower, superhero.powerstats.power)
+        updateHeight(binding.contentStats.vSpeed, superhero.powerstats.speed)
+        updateHeight(binding.contentStats.vCombat, superhero.powerstats.combat)
     }
 
     private fun updateHeight(view: View, stat: Int) {

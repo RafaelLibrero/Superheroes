@@ -1,5 +1,7 @@
 package com.example.superheroes.data
 
+import androidx.annotation.ColorRes
+import com.example.superheroes.R
 import com.google.gson.TypeAdapter
 import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
@@ -15,6 +17,16 @@ data class SuperHeroDetailResponse(
     @SerializedName("work") val work: SuperHeroWork,
     @SerializedName("appearance") val appearance: SuperHeroAppearance
 )
+{
+    @ColorRes
+    fun getAlignmentColor(): Int {
+        return when (biography.alignment) {
+            "good" -> R.color.alignment_color_good
+            "bad" -> R.color.alignment_color_bad
+            else -> R.color.alignment_color_neutral
+        }
+    }
+}
 
 data class PowerStatsResponse(
     @JsonAdapter(IntegerAdapter::class) @SerializedName("intelligence") val intelligence: Int,
@@ -31,6 +43,7 @@ data class SuperHeroBiography(
     @SerializedName("full-name") val fullName: String,
     @SerializedName("publisher") val publisher: String,
     @SerializedName("place-of-birth") val placeOfBirth: String,
+    @SerializedName("alignment") val alignment: String
 )
 
 data class SuperHeroWork(

@@ -12,4 +12,8 @@
     <color name="superhero_stat_speed">#E88B00</color>
     <color name="superhero_stat_combat">#673AB7</color>
 
+    <color name="alignment_color_good">#4CAF50</color>
+    <color name="alignment_color_bad">#F44336</color>
+    <color name="alignment_color_neutral">#4C8B94</color>
+
 </resources>
