@@ -64,12 +64,12 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun prepareStats(powerStats: PowerStatsResponse) {
-        updateHeight(binding.vIntelligence, powerStats.intelligence.toInt())
-        updateHeight(binding.vStrength, powerStats.strength.toInt())
-        updateHeight(binding.vDurability, powerStats.durability.toInt())
-        updateHeight(binding.vPower, powerStats.power.toInt())
-        updateHeight(binding.vSpeed, powerStats.speed.toInt())
-        updateHeight(binding.vCombat, powerStats.combat.toInt())
+        updateHeight(binding.vIntelligence, powerStats.intelligence)
+        updateHeight(binding.vStrength, powerStats.strength)
+        updateHeight(binding.vDurability, powerStats.durability)
+        updateHeight(binding.vPower, powerStats.power)
+        updateHeight(binding.vSpeed, powerStats.speed)
+        updateHeight(binding.vCombat, powerStats.combat)
     }
 
     private fun updateHeight(view: View, stat: Int) {

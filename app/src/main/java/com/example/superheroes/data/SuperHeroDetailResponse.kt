@@ -1,6 +1,10 @@
 package com.example.superheroes.data
 
+import com.google.gson.TypeAdapter
+import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
+import com.google.gson.stream.JsonReader
+import com.google.gson.stream.JsonWriter
 
 data class SuperHeroDetailResponse(
     @SerializedName("id") val id: String,
@@ -13,12 +17,12 @@ data class SuperHeroDetailResponse(
 )
 
 data class PowerStatsResponse(
-    @SerializedName("intelligence") val intelligence: String,
-    @SerializedName("strength") val strength: String,
-    @SerializedName("durability") val durability: String,
-    @SerializedName("power") val power: String,
-    @SerializedName("speed") val speed: String,
-    @SerializedName("combat") val combat: String
+    @JsonAdapter(IntegerAdapter::class) @SerializedName("intelligence") val intelligence: Int,
+    @JsonAdapter(IntegerAdapter::class) @SerializedName("strength") val strength: Int,
+    @JsonAdapter(IntegerAdapter::class) @SerializedName("durability") val durability: Int,
+    @JsonAdapter(IntegerAdapter::class) @SerializedName("power") val power: Int,
+    @JsonAdapter(IntegerAdapter::class) @SerializedName("speed") val speed: Int,
+    @JsonAdapter(IntegerAdapter::class) @SerializedName("combat") val combat: Int
 )
 
 data class SuperHeroImageDetailResponse(@SerializedName("url") val url: String)
@@ -42,3 +46,17 @@ data class SuperHeroAppearance(
     @SerializedName("height") val height: List<String>,
     @SerializedName("weight") val weight: List<String>,
 )
+
+class IntegerAdapter : TypeAdapter<Int>() {
+    override fun write(out: JsonWriter?, value: Int) {
+        out?.value(value)
+    }
+
+    override fun read(`in`: JsonReader?): Int {
+        return try {
+            `in`!!.nextString()!!.toInt()
+        } catch (e: Exception) {
+            0
+        }
+    }
+}
