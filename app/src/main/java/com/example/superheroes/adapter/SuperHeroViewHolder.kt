@@ -1,7 +1,8 @@
-package com.example.superheroes
+package com.example.superheroes.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.example.superheroes.data.SuperHeroItemResponse
 import com.example.superheroes.databinding.ItemSuperheroBinding
 import com.squareup.picasso.Picasso
 

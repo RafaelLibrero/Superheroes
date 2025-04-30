@@ -1,4 +1,4 @@
-package com.example.superheroes
+package com.example.superheroes.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.superheroes.DetailActivity.Companion.EXTRA_ID
+import com.example.superheroes.utils.ApiService
+import com.example.superheroes.R
+import com.example.superheroes.adapter.SuperHeroAdapter
+import com.example.superheroes.activities.DetailActivity.Companion.EXTRA_ID
+import com.example.superheroes.data.SuperHeroDataResponse
 import com.example.superheroes.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

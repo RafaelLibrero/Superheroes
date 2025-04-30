@@ -1,4 +1,4 @@
-package com.example.superheroes
+package com.example.superheroes.activities
 
 import android.os.Bundle
 import android.util.TypedValue
@@ -7,6 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.superheroes.utils.ApiService
+import com.example.superheroes.R
+import com.example.superheroes.data.PowerStatsResponse
+import com.example.superheroes.data.SuperHeroDetailResponse
 import com.example.superheroes.databinding.ActivityDetailBinding
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope

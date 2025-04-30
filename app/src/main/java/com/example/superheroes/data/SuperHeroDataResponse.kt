@@ -1,4 +1,4 @@
-package com.example.superheroes
+package com.example.superheroes.data
 
 import com.google.gson.annotations.SerializedName
 
